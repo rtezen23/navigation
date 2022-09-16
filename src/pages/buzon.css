@@ -1,0 +1,66 @@
+.buzon-container{
+    width: 100%;
+    height: 80vh;
+    display: grid;
+    place-items: center;
+}
+
+/* .buzon-form{
+    width: 100%;
+    max-width: 600px;
+    flex-direction: column;
+    gap: 2em;
+    display: flex;
+    padding-left: 7em;
+    border: 1px solid blue;
+} */
+
+.buzon-form{
+    display: flex;
+    gap: 8em;
+    width: 100%;
+    max-width: 800px;
+    justify-content: center;
+    height: 500px;
+    padding: 3em;
+    border: 10px solid #ccc;
+    background-color: #B9AFAD;
+    border-radius: 20px;
+}
+
+.buzon-labels{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+.buzon-inputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 300px;
+    
+}
+
+.buzon-labels > label{
+    font-size: 1.2rem;
+    font-weight: bold;
+    
+}
+
+.buzon-inputs select, .buzon-inputs input[type=text] {
+    padding: 10px 10px;
+    border-radius: 10px;
+    border-style: none;
+    border: 1px solid #ccc;
+}
+
+.buzon-textarea{
+    padding: 10px 10px;
+    height: 80px;
+    border-radius: 10px;
+    border-style: none;
+    border: 1px solid #ccc;
+    resize: none;
+}
