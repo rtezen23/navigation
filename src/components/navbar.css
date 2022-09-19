@@ -1,130 +1,133 @@
-header{
-    margin-top: 2em;
-    width: 100%;
-    background-color: #903B3D;
-    color: #B9AFAD;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+header {
+	margin-top: 2em;
+	width: 100%;
+	background-color: #903b3d;
+	color: #b9afad;
+	border-radius: 10px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-nav{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 5.5vh;
+nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 5.5vh;
 }
 
-.navbar-ul{
-    display: flex;
-    list-style: none;
-    transition: 0.3s ease-in;
+.navbar-ul {
+	display: flex;
+	list-style: none;
+	transition: 0.3s ease-in;
 }
 
-.navbar-icon{
-    font-size: 1.3rem;
+.navbar-icon {
+	font-size: 1.3rem;
 }
 
-.navbar-link{
-    text-decoration: none;
-}
-
-.link-container{
-    color: #fff;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: .5em;
+.navbar-link {
+	text-decoration: none;
 }
 
 .link-container {
-    padding: 15px;
-    text-decoration: none;
-    border-radius: 5px;
-    cursor: pointer;
+	color: #fff;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
 }
 
-.link-container:hover{
-    background-color: #ac5253;
+.link-container {
+	padding: 15px;
+	text-decoration: none;
+	border-radius: 5px;
+	cursor: pointer;
 }
 
-.aplications-container{
-    position: relative;
-    background-color: #903B3D;
+.link-container:hover {
+	background-color: #ac5253;
 }
 
-.aplications-links{
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    text-decoration: none;
-    position: relative;
-    width: 100%;
-    left: 0;
-    padding: .5em 0;
-    padding-left: 2em;
+.aplications-container {
+	position: relative;
+	background-color: #903b3d;
 }
 
-.aplications-links > *{
-    padding: 10px 20px;
-    background-color: #903B3D;
-    color: #ccc;
-    cursor: pointer;
+.aplications-links {
+	display: flex;
+	flex-direction: column;
+	list-style: none;
+	text-decoration: none;
+	position: absolute;
+	width: 100%;
+}
+
+.aplications-links > * {
+	padding: 10px 20px;
+	background-color: #903b3d;
+	color: #ccc;
+	cursor: pointer;
 }
 
 .aplications-links > *:hover {
-    background-color: #ac5253;
+	background-color: #ac5253;
 }
 
-.aplications-buzon{
-    text-decoration: none;
-    
+.aplications-buzon {
+	text-decoration: none;
 }
 
 /* TOGGLE */
-.navbar-toggle{
-    margin-right: 1em;
-    display: none;
+.navbar-toggle {
+	margin-right: 1em;
+	display: none;
 }
 
-.toggle-line{
-    width: 2rem;
-    height: 0.3rem;
-    margin: 0.3rem;
-    border-radius: 15px;
-    background-color: #fff;
-    transition: 0.4s ease-in;
+.toggle-line {
+	width: 2rem;
+	height: 0.3rem;
+	margin: 0.3rem;
+	border-radius: 15px;
+	background-color: #fff;
+	transition: 0.4s ease-in;
 }
 
 @media screen and (max-width: 768px) {
-    .navbar-toggle{
-        display: block;
-        margin-left: auto;
-        cursor: pointer;
-    }
+	.navbar-toggle {
+		display: block;
+		margin-left: auto;
+		cursor: pointer;
+	}
 
-    .navbar-ul{
-        position: fixed;
-        top: 16.5vh;
-        background-color: #903B3D;
-        right: 0;
-        flex-direction: column;
-        width: 100%;
-        transform: translateX(-100%);
-    }
-    
-    .navbar-active{
-        transform: translateX(0);
-    }
+	.navbar-ul {
+		position: fixed;
+		top: 16.5vh;
+		background-color: #903b3d;
+		right: 0;
+		flex-direction: column;
+		width: 100%;
+		transform: translateX(-100%);
+	}
 
-    .line1{
-        transform: rotate(-45deg) translate(-4px, 5px);
-    }
-    
-    .line2{
-        opacity: 0;
-    }
-    
-    .line3{
-        transform: rotate(45deg) translate(-8px, -10px);
-    }
+	.aplications-links {
+		position: relative;
+		left: 0;
+		padding: 0.5em 0;
+		padding-left: 2em;
+	}
+
+	.navbar-active {
+		transform: translateX(0);
+	}
+
+	.line1 {
+		transform: rotate(-45deg) translate(-4px, 5px);
+	}
+
+	.line2 {
+		opacity: 0;
+	}
+
+	.line3 {
+		transform: rotate(45deg) translate(-8px, -10px);
+	}
 }

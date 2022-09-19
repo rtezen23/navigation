@@ -1,19 +1,24 @@
-import React from 'react'
-import { useState } from 'react'
-import './buzon.css'
+import React from 'react';
+import { useState } from 'react';
+import './buzon.css';
+import Select from 'react-select';
 
 const Buzon = () => {
+	const [tipo, setTipo] = useState('Sugerencia');
 
-    const [tipo, setTipo] = useState('Sugerencia')
+	const handleTipo = value => {
+		setTipo(value);
+	};
 
-    const handleTipo = (value) => {
-        setTipo(value)
-    }
+	const options = [
+		{ value: 'queja', label: 'queja' },
+		{ value: 'sugerencia', label: 'sugerencia' },
+	];
 
-  return (
-    <section className='buzon-container'>
-        <form className='buzon-form'>
-            {/* <div>
+	return (
+		<section className='buzon-container'>
+			<form className='buzon-form'>
+				{/* <div>
                 <label htmlFor="tipo">Tipo: </label>
                 <select name="tipo" id="tipo">
                     <option value="queja">Queja</option>
@@ -36,27 +41,37 @@ const Buzon = () => {
                 <label htmlFor="descripcion">Descripción de {}</label>
                 <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
             </div> */}
-            <div className='buzon-labels'>
-                <label htmlFor="tipo">Tipo </label>
-                <label htmlFor="nombre">Nombre Completo </label>
-                <label htmlFor="dni">DNI </label>
-                <label htmlFor="cargo">Cargo </label>
-                <label htmlFor="descripcion">Descripción de {tipo}</label>
-            </div>
-            <div className='buzon-inputs'>
-                <select name="tipo" id="tipo" onChange={(e)=>handleTipo(e.target.value)}>
-                    <option value="Sugerencia">Seleccione</option>
-                    <option value="Queja">Queja</option>
-                    <option value="Sugerencia">Sugerencia</option>
-                </select>
-                <input type="text" name="nombre" id="nombre" />
-                <input type="text" name="dni" id="dni" />
-                <input type="text" name="cargo" id="cargo" />
-                <textarea name="descripcion" id="descripcion" className='buzon-textarea'></textarea>
-            </div>
-        </form>
-    </section>
-  )
-}
+				<div className='buzon-labels'>
+					<label htmlFor='tipo'>Tipo </label>
+					<label htmlFor='nombre'>Nombre Completo </label>
+					<label htmlFor='dni'>DNI </label>
+					<label htmlFor='cargo'>Cargo </label>
+					<label htmlFor='descripcion'>Descripción de {tipo}</label>
+				</div>
+				<div className='buzon-inputs'>
+					{/* <select
+						name='tipo'
+						id='tipo'
+						onChange={e => handleTipo(e.target.value)}
+					>
+						<option value='Sugerencia'>Seleccione</option>
+						<option value='Queja'>Queja</option>
+						<option value='Sugerencia'>Sugerencia</option>
+					</select> */}
+					<Select value={tipo} onChange={handleTipo} options={options} />
 
-export default Buzon
+					<input type='text' name='nombre' id='nombre' />
+					<input type='text' name='dni' id='dni' />
+					<input type='text' name='cargo' id='cargo' />
+					<textarea
+						name='descripcion'
+						id='descripcion'
+						className='buzon-textarea'
+					></textarea>
+				</div>
+			</form>
+		</section>
+	);
+};
+
+export default Buzon;
