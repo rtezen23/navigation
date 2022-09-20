@@ -3,9 +3,15 @@ import { useState } from 'react';
 import './buzon.css';
 import Select from 'react-select';
 import axios from 'axios';
+import { Message } from '../components/Message';
+import {useNavigate} from 'react-router-dom';
 
 const Buzon = () => {
 	const [tipo, setTipo] = useState('');
+	const [ showMessage, setShowMessage ] = useState(false);
+
+	const navigate = useNavigate();
+
 	const [buzonDatos, setBuzonDatos] = useState({
 		tipo: '',
 		nombre: '',
@@ -53,12 +59,25 @@ const Buzon = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		axios.post('http://localhost:4000/api/v1/buzon', buzonDatos)
+		axios.post('http://192.168.1.51:4000/api/v1/buzon', buzonDatos)
 		.then(res => {
-			alert('Datos agregados');
+			setShowMessage(true);
 			console.log(res.data);
 		})
 		.catch(error => console.log(error));
+	}
+
+	const handleBuzonData = () => {
+		const respuesta = prompt('Ingrese contraseña');
+		if (respuesta) {
+			localStorage.setItem('password', respuesta)
+			if (respuesta === '123') {
+				navigate('/buzonData')
+			} else alert('Contraseña incorrecta')
+			navigate
+		} else {
+			alert('Contraseña inválida')
+		}
 	}
 
 	const optionsTipo = [
@@ -87,6 +106,7 @@ const Buzon = () => {
 
 	return (
 		<section className='buzon-container'>
+			{ showMessage && <Message handleMessage={()=>setShowMessage(false)}/> }
 			<form className='buzon-form' onSubmit={handleSubmit}>
 				{/* <div>
                 <label htmlFor="tipo">Tipo: </label>
@@ -111,6 +131,7 @@ const Buzon = () => {
                 <label htmlFor="descripcion">Descripción de {}</label>
                 <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
             </div> */}
+			<h5 onClick={handleBuzonData} className='watch-registers'>Ver registros</h5>
 			<div className="buzon-input_label_container">
 				<div className='buzon-labels'>
 					<label htmlFor='tipo'>Tipo </label>
@@ -131,8 +152,8 @@ const Buzon = () => {
 					</select> */}
 					<Select onChange={handleTipo} options={optionsTipo} />
 
-					<input type='text' name='nombre' id='nombre' onChange={handleChange}/>
-					<input type='text' name='dni' id='dni' onChange={handleChange}/>
+					<input required type='text' name='nombre' id='nombre' onChange={handleChange}/>
+					<input required type='text' name='dni' id='dni' onChange={handleChange}/>
 					<Select onChange={handleCargo} options={optionsCargo} />
 					<textarea
 						name='descripcion'

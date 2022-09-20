@@ -5,8 +5,10 @@ import {
   Route,
 } from "react-router-dom";
 import Buzon from './pages/Buzon';
-import { Slider } from './components/Slider';
+import {BuzonTable} from './pages/BuzonTable';
 import './components/slider.css';
+import ProtectedRoutes from './components/ProtectedRoutes';
+import { Home } from './pages/Home';
 
 const slides = [
   { url: 'https://c4.wallpaperflare.com/wallpaper/435/542/549/javascript-google-node-js-html-microsoft-visual-studio-hd-wallpaper-preview.jpg', title: 'first image'},
@@ -20,11 +22,15 @@ function App() {
   return (
     <div className="App">
       <Navbar/>
-      <div className='containerStyles'>
+      {/* <div className='containerStyles'>
         <Slider slides={slides}/>
-      </div>
+      </div> */}
         <Routes>
+          <Route path='/' element={<Home/>}/>
           <Route path='/buzon' element={<Buzon/>}/>
+          <Route element={<ProtectedRoutes/>}>
+            <Route path='/buzonData' element={<BuzonTable/>}/>
+          </Route>
         </Routes>
     </div>
   )
