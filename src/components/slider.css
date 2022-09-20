@@ -1,0 +1,58 @@
+/* CONTENEDOR PRINCIPAL DE SLIDER QUE ESTÁ EN App.jsx */
+
+.containerStyles{
+    width: 100%;
+    height: 280px;
+    margin: 0 auto;
+}
+
+/* ESTILOS DE SLIDER EN Slider.jsx */
+
+.sliderStyles{
+    height: 100%;
+    position: relative;
+    margin-top: 2em;
+}
+
+.slideStyles{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-position: center;
+    background-size: cover;
+    margin-bottom: 1.5em;
+}
+
+.leftArrowStyles, .rightArrowStyles{
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    font-size: 45px;
+    color: #fff;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.leftArrowStyles{
+    left: 32px;
+}
+
+.rightArrowStyles{
+    right: 32px;
+}
+
+.dotsContainerStyles{
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+.dotStyles{
+    cursor: pointer;
+    font-size: 20px;
+    color: #fff;
+}
+
+.dotSelected{
+    color: #903B3D;
+}

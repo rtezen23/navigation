@@ -2,22 +2,92 @@ import React from 'react';
 import { useState } from 'react';
 import './buzon.css';
 import Select from 'react-select';
+import axios from 'axios';
 
 const Buzon = () => {
-	const [tipo, setTipo] = useState('Sugerencia');
+	const [tipo, setTipo] = useState('');
+	const [buzonDatos, setBuzonDatos] = useState({
+		tipo: '',
+		nombre: '',
+		dni: '',
+		cargo: '',
+		descripcion: '',
+	})
 
-	const handleTipo = value => {
-		setTipo(value);
+	const handleTipo = data => {
+		setTipo(data.value);
+		setBuzonDatos(prevBuzonDatos => {
+            return {
+                ...prevBuzonDatos,
+                tipo: data.value
+            }
+        })
 	};
 
-	const options = [
-		{ value: 'queja', label: 'queja' },
-		{ value: 'sugerencia', label: 'sugerencia' },
+	const handleCargo = data => {
+		setBuzonDatos(prevBuzonDatos => {
+            return {
+                ...prevBuzonDatos,
+                cargo: data.value
+            }
+        })
+	};
+
+	const handleChange = (event) => {
+        setBuzonDatos(prevBuzonDatos => {
+            return {
+                ...prevBuzonDatos,
+                [event.target.name]: event.target.value
+            }
+        })
+    }
+
+	// const calcularFecha = () => {
+	// 	const fecha = new Date();
+	// 	const year = fecha.getFullYear();
+	// 	const month = fecha.getMonth();
+	// 	const day = fecha.getDate();
+	// 	const fechaFinal = `${day}-${month+1}-${year}`;
+	// 	return fechaFinal;
+	// }
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		axios.post('http://localhost:4000/api/v1/buzon', buzonDatos)
+		.then(res => {
+			alert('Datos agregados');
+			console.log(res.data);
+		})
+		.catch(error => console.log(error));
+	}
+
+	const optionsTipo = [
+		{ value: 'queja', label: 'Queja' },
+		{ value: 'sugerencia', label: 'Sugerencia' },
+	];
+
+	const optionsCargo = [
+		{ value: 'ABOGADO', label: 'ABOGADO'},
+		{ value: 'ADMINISTRADOR BASE DATOS', label: 'ADMINISTRADOR BASE DATOS'},
+		{ value: 'ANALISTA DE BASE DE DATOS', label: 'ANALISTA DE BASE DE DATOS'},
+		{ value: 'ANALISTA DE OPERACIONES', label: 'ANALISTA DE OPERACIONES'},
+		{ value: 'ANALISTA DE SISTEMAS', label: 'ANALISTA DE SISTEMAS'},
+		{ value: 'ASESOR DOMICILIARIO', label: 'ASESOR DOMICILIARIO'},
+		{ value: 'ASESOR TELEFÓNICO', label: 'ASESOR TELEFÓNICO'},
+		{ value: 'ASISTENTE ADMINISTRATIVO/A', label: 'ASISTENTE ADMINISTRATIVO/A'},
+		{ value: 'ASISTENTE CONTABLE', label: 'ASISTENTE CONTABLE'},
+		{ value: 'CONTADOR', label: 'CONTADOR'},
+		{ value: 'JEFE DE CUENTA', label: 'JEFE DE CUENTA'},
+		{ value: 'JEFE OPERACIONES', label: 'JEFE OPERACIONES'},
+		{ value: 'MONITOR DE CALIDAD', label: 'MONITOR DE CALIDAD'},
+		{ value: 'SOPORTE TÉCNICO', label: 'SOPORTE TÉCNICO'},
+		{ value: 'SUPERVISOR DE COBRANZAS', label: 'SUPERVISOR DE COBRANZAS'},
+		{ value: 'OTRO', label: 'OTRO'},
 	];
 
 	return (
 		<section className='buzon-container'>
-			<form className='buzon-form'>
+			<form className='buzon-form' onSubmit={handleSubmit}>
 				{/* <div>
                 <label htmlFor="tipo">Tipo: </label>
                 <select name="tipo" id="tipo">
@@ -41,12 +111,13 @@ const Buzon = () => {
                 <label htmlFor="descripcion">Descripción de {}</label>
                 <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
             </div> */}
+			<div className="buzon-input_label_container">
 				<div className='buzon-labels'>
 					<label htmlFor='tipo'>Tipo </label>
 					<label htmlFor='nombre'>Nombre Completo </label>
 					<label htmlFor='dni'>DNI </label>
 					<label htmlFor='cargo'>Cargo </label>
-					<label htmlFor='descripcion'>Descripción de {tipo}</label>
+					<label htmlFor='descripcion'>Descripción {tipo}</label>
 				</div>
 				<div className='buzon-inputs'>
 					{/* <select
@@ -58,17 +129,20 @@ const Buzon = () => {
 						<option value='Queja'>Queja</option>
 						<option value='Sugerencia'>Sugerencia</option>
 					</select> */}
-					<Select value={tipo} onChange={handleTipo} options={options} />
+					<Select onChange={handleTipo} options={optionsTipo} />
 
-					<input type='text' name='nombre' id='nombre' />
-					<input type='text' name='dni' id='dni' />
-					<input type='text' name='cargo' id='cargo' />
+					<input type='text' name='nombre' id='nombre' onChange={handleChange}/>
+					<input type='text' name='dni' id='dni' onChange={handleChange}/>
+					<Select onChange={handleCargo} options={optionsCargo} />
 					<textarea
 						name='descripcion'
 						id='descripcion'
 						className='buzon-textarea'
+						onChange={handleChange}
 					></textarea>
 				</div>
+			</div>
+				<button className='buzon-button'>Enviar</button>
 			</form>
 		</section>
 	);

@@ -5,6 +5,10 @@
     padding: 1em 2em;
 }
 
+.header-h1{
+    font-size: 1.7rem;
+}
+
 .header-img-container{
     display: flex;
     gap: 1em;
