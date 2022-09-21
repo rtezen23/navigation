@@ -1,4 +1,5 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
 
 .buzon-container{
     width: 100%;
@@ -6,7 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    font-family: 'Kanit', sans-serif;
 }
 
 /* .buzon-form{
@@ -19,11 +20,51 @@
     border: 1px solid blue;
 } */
 
-.watch-registers{
-    text-align: end;
-    text-decoration: underline;
-    color: blue;
-    cursor: pointer;
+/* CSS */
+.watch-registers {
+  width: fit-content;
+  align-items: center;
+  appearance: none;
+  background-image: radial-gradient(100% 100% at 100% 0, #5699f7 0, #3185FC 100%);
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
+  margin-left: auto;
+}
+
+.watch-registers:focus {
+  box-shadow: #fcc4a1 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+}
+
+.watch-registers:hover {
+  box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #fcc4a1 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.watch-registers:active {
+  box-shadow: #fcc4a1 0 3px 7px inset;
+  transform: translateY(2px);
 }
 
 .buzon-form{
@@ -33,8 +74,11 @@
     max-width: 800px;
     height: fit-content;
     padding: 3em;
-    border: 10px solid #ccc;
-    background-color: #777776;
+    /* border: 10px solid #ccc; */
+    background-color: #9D1A1C;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    /* background: rgb(227,215,215);
+background: radial-gradient(circle, rgba(227,215,215,1) 0%, rgba(157,26,28,1) 73%, rgba(157,26,28,1) 100%); */
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -67,8 +111,8 @@
 
 .buzon-labels > label{
     font-size: 1.2rem;
-    font-weight: bold;
-    
+    font-weight: 400; 
+    color: #fff;   
 }
 
 .buzon-inputs select, .buzon-inputs input[type=text] {
@@ -76,6 +120,9 @@
     border-radius: 10px;
     border-style: none;
     border: 1px solid #ccc;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: .9rem;
 }
 
 .buzon-textarea{
@@ -85,18 +132,21 @@
     border-style: none;
     border: 1px solid #ccc;
     resize: none;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: .9rem;
 }
 
 .buzon-button{
   align-items: center;
   justify-content: center;
   appearance: none;
-  background-image: radial-gradient(100% 100% at 100% 0, #777776 0, #5D5E5B 100%);
+  background-image: radial-gradient(100% 100% at 100% 0, #fff 0, #fff 100%);
   border: 0;
   border-radius: 6px;
   box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
   box-sizing: border-box;
-  color: #fff;
+  color: #000;
   cursor: pointer;
   display: inline-flex;
   font-family: "JetBrains Mono",monospace;
@@ -116,8 +166,9 @@
   white-space: nowrap;
   will-change: box-shadow,transform;
   font-size: 18px;
-  width: 50%;
+  width: 40%;
   align-self: center;
+  font-weight: bold;
 }
 
 .buzon-button:focus {

@@ -5,10 +5,15 @@ import Select from 'react-select';
 import axios from 'axios';
 import { Message } from '../components/Message';
 import {useNavigate} from 'react-router-dom';
+import { BuzonPassword } from '../components/BuzonPassword';
+import { useEffect } from 'react';
 
 const Buzon = () => {
 	const [tipo, setTipo] = useState('');
 	const [ showMessage, setShowMessage ] = useState(false);
+	const [ showPasswordMessage, setShowPasswordMessage ] = useState(false);
+
+	const [ emptyValue, setEmptyValue ] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -19,6 +24,27 @@ const Buzon = () => {
 		cargo: '',
 		descripcion: '',
 	})
+
+	useEffect(() => {
+		const regExp = /^[0-9]*$/g;
+		if (buzonDatos.dni.match(regExp)) {
+			if (buzonDatos.dni.length>8) {
+				setBuzonDatos(prevBuzonDatos => {
+					return {
+						...prevBuzonDatos,
+						dni: prevBuzonDatos.dni.substring(0,8)
+					}
+				})
+			}
+		} else {
+			setBuzonDatos(prevBuzonDatos => {
+				return {
+					...prevBuzonDatos,
+					dni: prevBuzonDatos.dni.slice(0,prevBuzonDatos.dni.length-1)
+				}
+			})
+		}
+	}, [buzonDatos.dni])
 
 	const handleTipo = data => {
 		setTipo(data.value);
@@ -57,27 +83,51 @@ const Buzon = () => {
 	// 	return fechaFinal;
 	// }
 
+	const handleEmpty = () => {
+		setEmptyValue(true)
+		console.log('hola')
+	}
+	
+	let isEmpty = false;
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		axios.post('http://192.168.1.51:4000/api/v1/buzon', buzonDatos)
-		.then(res => {
-			setShowMessage(true);
-			console.log(res.data);
-		})
-		.catch(error => console.log(error));
+		for (const key in buzonDatos) {
+			if (buzonDatos[key] === '') {
+				isEmpty = true;
+			}
+		}
+
+		if (isEmpty === false) {
+			axios.post('http://192.168.1.51:4000/api/v1/buzon', buzonDatos)
+			.then(res => {
+				setShowMessage(true);
+	
+			})
+			.catch(error => console.log(error));
+		} else alert('Complete todos los campos')
+
 	}
 
 	const handleBuzonData = () => {
-		const respuesta = prompt('Ingrese contraseña');
-		if (respuesta) {
-			localStorage.setItem('password', respuesta)
-			if (respuesta === '123') {
-				navigate('/buzonData')
-			} else alert('Contraseña incorrecta')
-			navigate
-		} else {
-			alert('Contraseña inválida')
-		}
+		// const respuesta = prompt('Ingrese contraseña');
+		// if (respuesta) {
+		// 	localStorage.setItem('password', respuesta)
+		// 	if (respuesta === '123') {
+		// 		navigate('/buzonData')
+		// 	} else alert('Contraseña incorrecta')
+		// 	navigate
+		// } else {
+		// 	alert('Contraseña inválida')
+		// }
+	}
+
+	const handleMessage = () => {
+		setShowMessage(false);
+		navigate('/');
+	}
+
+	const handleBuzonPassword = () => {
+		setShowPasswordMessage(!showPasswordMessage)
 	}
 
 	const optionsTipo = [
@@ -106,7 +156,7 @@ const Buzon = () => {
 
 	return (
 		<section className='buzon-container'>
-			{ showMessage && <Message handleMessage={()=>setShowMessage(false)}/> }
+			{ showMessage && <Message handleMessage={handleMessage}/> }
 			<form className='buzon-form' onSubmit={handleSubmit}>
 				{/* <div>
                 <label htmlFor="tipo">Tipo: </label>
@@ -131,7 +181,8 @@ const Buzon = () => {
                 <label htmlFor="descripcion">Descripción de {}</label>
                 <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
             </div> */}
-			<h5 onClick={handleBuzonData} className='watch-registers'>Ver registros</h5>
+			<h5 onClick={handleBuzonPassword} className='watch-registers'>Ver registros</h5>
+			{ showPasswordMessage && <BuzonPassword handleBuzonPassword = {handleBuzonPassword}/> }
 			<div className="buzon-input_label_container">
 				<div className='buzon-labels'>
 					<label htmlFor='tipo'>Tipo </label>
@@ -150,12 +201,13 @@ const Buzon = () => {
 						<option value='Queja'>Queja</option>
 						<option value='Sugerencia'>Sugerencia</option>
 					</select> */}
-					<Select onChange={handleTipo} options={optionsTipo} />
+					<Select required={true} onChange={handleTipo} options={optionsTipo} placeholder='Seleccione Tipo' />
 
-					<input required type='text' name='nombre' id='nombre' onChange={handleChange}/>
-					<input required type='text' name='dni' id='dni' onChange={handleChange}/>
-					<Select onChange={handleCargo} options={optionsCargo} />
+					<input placeholder='Ingrese nombre completo' required type='text' name='nombre' id='nombre' onChange={handleChange}/>
+					<input placeholder='Ingrese documento' required type='text' name='dni' id='dni' onChange={handleChange} value={buzonDatos.dni}/>
+					<Select onChange={handleCargo} options={optionsCargo} placeholder='Seleccione Cargo' />
 					<textarea
+						placeholder='Ingrese descripción'
 						name='descripcion'
 						id='descripcion'
 						className='buzon-textarea'

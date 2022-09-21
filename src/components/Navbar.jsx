@@ -39,8 +39,6 @@ const Navbar = () => {
     setShowMenu(!showMenu)
   }
 
-  console.log(vicidial)
-
   return (
     <header>
         <Header/>
@@ -52,8 +50,8 @@ const Navbar = () => {
                     <p>Home</p>
                   </Link>
                 </li>
-                <li className='aplications-container'>
-                  <div className="link-container" onClick={handleAplications}>
+                <li className='aplications-container' onMouseLeave={()=>setshowAplications(false)}>
+                  <div className="link-container aplicaciones-navbar" onClick={handleAplications}>
                     <RiComputerFill className='navbar-icon'/>
                     <p> Aplicaciones</p>
                   </div>
@@ -91,7 +89,7 @@ const Navbar = () => {
                   }
                 </li>
                 <li className='navbar-aplicaciones'>
-                  <Link className='navbar-link link-container' to='/'>
+                  <Link className='navbar-link link-container' to='/politicas'>
                     <BsFillBookmarkCheckFill className='navbar-icon'/>
                     <p>Políticas</p>
                   </Link>

@@ -3,6 +3,8 @@ import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import DataTable from 'react-data-table-component';
+import * as XLSX from 'xlsx';
+import './buzonTable.css';
 
 export const BuzonTable = () => {
 
@@ -12,6 +14,14 @@ export const BuzonTable = () => {
         {
             name: 'IDBUZON',
             selector: row => row.idbuzon,
+            grow: .5,
+            center: true
+        },
+        {
+            name: 'FECHA_RECEPCION',
+            selector: row => row.fecha_recepcion,
+            grow: 1.5,
+            center: true
         },
         {
             name: 'TIPO',
@@ -24,21 +34,28 @@ export const BuzonTable = () => {
         {
             name: 'DNI',
             selector: row => row.dni,
+            
         },
         {
             name: 'CARGO',
             selector: row => row.cargo,
+            
         },
         {
             name: 'DESCRIPCION',
             selector: row => row.descripcion,
-        },
-        {
-            name: 'FECHA_RECEPCION',
-            selector: row => row.fecha_recepcion,
-            grow: 1.5,
+            
         },
     ];
+
+    const handleOnExport = () => {
+        const wb = XLSX.utils.book_new();
+        const ws = XLSX.utils.json_to_sheet(datosBuzon);
+
+        XLSX.utils.book_append_sheet(wb, ws, "MySheet1");
+
+        XLSX.writeFile(wb, 'BuzonData.xlsx')
+    }
 
     const URL = 'http://192.168.1.51:4000/api/v1/buzon';
 
@@ -56,8 +73,6 @@ export const BuzonTable = () => {
         showData()
     }, [])
 
-    console.log(datosBuzon)
-
     const paginationOptions = {
         rowsPerPageText: 'Filas por página',
         rangeSeparatorText: 'de',
@@ -69,6 +84,7 @@ export const BuzonTable = () => {
 
   return (
     <div>
+        <button className='buzonTable-button' onClick={handleOnExport}>Exportar</button>
         <DataTable
 					// responsive
 					columns={columns}
