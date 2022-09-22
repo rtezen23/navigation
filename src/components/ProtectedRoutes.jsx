@@ -4,7 +4,7 @@ const ProtectedRoutes = () => {
 
     const token = localStorage.getItem('password');
 
-    if(token === '123'){
+    if(token === 'Qazokm33.'){
         return <Outlet />
     } else { 
         return <Navigate to='/buzon' />

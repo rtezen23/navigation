@@ -8,12 +8,14 @@ import {useNavigate} from 'react-router-dom';
 import { BuzonPassword } from '../components/BuzonPassword';
 import { useEffect } from 'react';
 
+// const API_URL = `${process.env.REACT_APP_API_URL}api/v1/buzon`;
+
 const Buzon = () => {
 	const [tipo, setTipo] = useState('');
 	const [ showMessage, setShowMessage ] = useState(false);
 	const [ showPasswordMessage, setShowPasswordMessage ] = useState(false);
 
-	const [ emptyValue, setEmptyValue ] = useState(false);
+	const [ emptyValue, setEmptyValue ] = useState(true);
 
 	const navigate = useNavigate();
 
@@ -28,11 +30,11 @@ const Buzon = () => {
 	useEffect(() => {
 		const regExp = /^[0-9]*$/g;
 		if (buzonDatos.dni.match(regExp)) {
-			if (buzonDatos.dni.length>8) {
+			if (buzonDatos.dni.length>10) {
 				setBuzonDatos(prevBuzonDatos => {
 					return {
 						...prevBuzonDatos,
-						dni: prevBuzonDatos.dni.substring(0,8)
+						dni: prevBuzonDatos.dni.substring(0,10)
 					}
 				})
 			}
@@ -45,6 +47,14 @@ const Buzon = () => {
 			})
 		}
 	}, [buzonDatos.dni])
+
+	useEffect(()=>{
+		for (const key in buzonDatos) {
+			if (buzonDatos[key] === '') {
+				setEmptyValue(false)
+			} else setEmptyValue(true)
+		}
+	},[buzonDatos, setEmptyValue])
 
 	const handleTipo = data => {
 		setTipo(data.value);
@@ -83,12 +93,11 @@ const Buzon = () => {
 	// 	return fechaFinal;
 	// }
 
-	const handleEmpty = () => {
-		setEmptyValue(true)
-		console.log('hola')
-	}
-	
 	let isEmpty = false;
+
+	// const API_URL = 'api/v1/buzon'
+	
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		for (const key in buzonDatos) {
@@ -101,7 +110,6 @@ const Buzon = () => {
 			axios.post('http://192.168.1.51:4000/api/v1/buzon', buzonDatos)
 			.then(res => {
 				setShowMessage(true);
-	
 			})
 			.catch(error => console.log(error));
 		} else alert('Complete todos los campos')

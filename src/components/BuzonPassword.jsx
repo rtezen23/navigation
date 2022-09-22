@@ -3,10 +3,12 @@ import './buzonPassword.css'
 import {AiFillEye} from 'react-icons/ai'
 import {AiFillEyeInvisible} from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
+import { ErrorMessage } from './errorMessage'
 
 export const BuzonPassword = ({handleBuzonPassword}) => {
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
+  const [showErrorMessage, setShowErrorMessage] = useState(false)
 
   const navigate = useNavigate();
 
@@ -14,19 +16,24 @@ export const BuzonPassword = ({handleBuzonPassword}) => {
     setShowPassword(!showPassword)
   }
 
+  const handleErrorMessage = () => {
+    setShowErrorMessage(false)
+  }
+
   const handleEnviar = () => {
 		if (password !== '') {
 			localStorage.setItem('password', password)
-			if (password === '123') {
+			if (password === 'Qazokm33.') {
 				navigate('/buzonData')
-			} else alert('Contraseña incorrecta')
+			} else setShowErrorMessage(true);
 		} else {
-			alert('Contraseña inválida')
+			setShowErrorMessage(true);
 		}
   }
 
   return (
     <div className='buzonPassword-global'>
+      { showErrorMessage && <ErrorMessage handleErrorMessage = {handleErrorMessage}/> }
         <div className='buzonPassword-container'>
           <label htmlFor="password">Ingrese contraseña</label>
           <div className='buzon-input-container'>

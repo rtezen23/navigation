@@ -24,3 +24,29 @@
   box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
   transform: scale(1.05) rotate(-1deg);
 }
+
+.search-container{
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+}
+
+.buzonTable-alineados{
+  display: flex;justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+.buzonTable-input{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+}
+
+.input-search{
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  color: #5E5D5B;
+}

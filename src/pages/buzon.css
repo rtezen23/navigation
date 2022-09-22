@@ -25,7 +25,7 @@
   width: fit-content;
   align-items: center;
   appearance: none;
-  background-image: radial-gradient(100% 100% at 100% 0, #5699f7 0, #3185FC 100%);
+  background-image: radial-gradient(100% 100% at 100% 0, #777673 0, #5E5D5B 100%);
   border: 0;
   border-radius: 6px;
   box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
@@ -54,16 +54,16 @@
 }
 
 .watch-registers:focus {
-  box-shadow: #fcc4a1 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+  box-shadow: #777673 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
 }
 
 .watch-registers:hover {
-  box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #fcc4a1 0 -3px 0 inset;
+  box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #777673 0 -3px 0 inset;
   transform: translateY(-2px);
 }
 
 .watch-registers:active {
-  box-shadow: #fcc4a1 0 3px 7px inset;
+  box-shadow: #777673 0 3px 7px inset;
   transform: translateY(2px);
 }
 
@@ -183,6 +183,11 @@ background: radial-gradient(circle, rgba(227,215,215,1) 0%, rgba(157,26,28,1) 73
 .buzon-button:active {
   box-shadow: #5D5E5B 0 3px 7px inset;
   transform: translateY(2px);
+}
+
+.buzon-button:disabled{
+  background-image: radial-gradient(100% 100% at 100% 0, #ccc 0, #ccc 100%);
+  color: #fff;
 }
 
 @media screen and (max-width: 600px) {

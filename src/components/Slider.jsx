@@ -33,7 +33,7 @@ export const Slider = ({ slides }) => {
         <div className='rightArrowStyles' onClick={goToNext}>
             <IoMdArrowDroprightCircle/>
         </div>
-        <div className='slideStyles' style={{backgroundImage: `url(${slides[currentIndex].url})`}}></div>
+        <img className='slideStyles' src={`${slides[currentIndex].url}`} alt={`${slides[currentIndex].title}`} />
         <div className='dotsContainerStyles'>
             {slides.map((slide, index) => (
                 <BsCircleFill key={index} className={`dotStyles ${currentIndex === index && 'dotSelected'}`} onClick={()=>goToSlide(index)}/>

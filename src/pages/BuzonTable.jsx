@@ -5,10 +5,13 @@ import { useEffect } from 'react';
 import DataTable from 'react-data-table-component';
 import * as XLSX from 'xlsx';
 import './buzonTable.css';
+import {FaSearch} from 'react-icons/fa';
 
 export const BuzonTable = () => {
 
     const [datosBuzon, setDatosBuzon] = useState([])
+    const [inputText, setInputText] = useState([])
+    const [suggestions, setSuggestions] = useState([])
 
     const columns = [
         {
@@ -67,11 +70,29 @@ export const BuzonTable = () => {
 			return {...buzon, fecha_recepcion: newDate.toLocaleString()}
 		})
 		setDatosBuzon(newBuzons);
+        setSuggestions(newBuzons)
 	};
 
     useEffect(() => {
         showData()
     }, [])
+
+    const handleSearch = (value) => {
+        let matches = [];
+		if (value.length > 0) {
+			matches = datosBuzon.filter(datoBuzon => {
+				const regex = new RegExp(`${value}`, 'gi');
+				const values = Object.values(datoBuzon);
+				for (let i = 0; i < values.length; i++) {
+					if (values[i].toString().match(regex)) {
+						return values[i].toString().match(regex);
+					}
+				}
+			});
+			setSuggestions(matches);
+		} else setSuggestions(datosBuzon);
+		setInputText(value);
+    }
 
     const paginationOptions = {
         rowsPerPageText: 'Filas por página',
@@ -84,11 +105,19 @@ export const BuzonTable = () => {
 
   return (
     <div>
-        <button className='buzonTable-button' onClick={handleOnExport}>Exportar</button>
+        <div className='buzonTable-alineados'>
+            <div className='search-container'>
+                <input className='buzonTable-input' type='text' value={inputText} onChange={e=>handleSearch(e.target.value)} placeholder="Ingrese texto a buscar" />
+                <FaSearch className='input-search'/>
+            </div>
+            <button className='buzonTable-button' onClick={handleOnExport}>Exportar</button>
+        </div>
+
         <DataTable
 					// responsive
 					columns={columns}
-					data={datosBuzon}
+					// data={datosBuzon}
+					data={suggestions}
 					pagination
 					paginationComponentOptions={paginationOptions}
 					fixedHeader

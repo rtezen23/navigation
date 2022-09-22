@@ -135,6 +135,10 @@ nav {
 	transition: 0.4s ease-in;
 }
 
+.canales-link{
+	color: #ccc;
+}
+
 @media screen and (max-width: 768px) {
 	.navbar-toggle {
 		display: block;

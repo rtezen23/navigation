@@ -14,6 +14,7 @@ const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false)
   const [showClose, setShowClose] = useState(false)
   const [showAplications, setshowAplications] = useState(false)
+  const [showCanales, setshowCanales] = useState(false)
 
   const [vicidial, setVicidial] = useState(false);
   const [gestion, setGestion] = useState(false);
@@ -21,6 +22,10 @@ const Navbar = () => {
 
   const handleAplications = () => {
     setshowAplications(!showAplications)
+  }
+
+  const handleCanales = () => {
+    setshowCanales(!showCanales)
   }
 
   const handleVicidial = () => {
@@ -100,8 +105,34 @@ const Navbar = () => {
                     <p>Buzón de sugerencias y quejas</p>
                   </Link>
                 </li>
+                <li className='aplications-container' onMouseLeave={()=>setshowCanales(false)}>
+                  <div className="link-container aplicaciones-navbar" onClick={handleCanales}>
+                    <RiComputerFill className='navbar-icon'/>
+                    <p>Canales masivos</p>
+                  </div>
+                  {/* COPIADOS ESTILOS DE APLICATIONS, HAY QUE ARREGLAR AUNQUE FUNCIONE */}
+                  { showCanales &&
+                    <div className='aplications-links'>
+                      <div className='aplications-item'>
+                        <a className='navbar-link aplications-item_padre canales-link' href='	https://sms.intico.com.pe/Security/Login?reseller=B21295B42B' target='_blank'>SMS</a>
+                      </div>
+                      <div className='aplications-item'>
+                        <a className='navbar-link aplications-item_padre canales-link' href='https://broadcast.itelvox.com/login.php?redirect=%2Fcontact_group.php' target='_blank'>IVR</a>
+                      </div>
+                      <div className='aplications-item'>
+                        <a className='navbar-link aplications-item_padre canales-link' href='https://app.solymaster.com/customer/index.php/guest/index' target='_blank'>MAILING</a>
+                      </div>
+                      <div className='aplications-item'>
+                        <a className='navbar-link aplications-item_padre canales-link' href='#'>BOT</a>
+                      </div>
+                      <div className='aplications-item'>
+                        <a className='navbar-link aplications-item_padre canales-link' href='#'>WHATSAPP</a>
+                      </div>
+                    </div>
+                  }
+                </li>
                 <li>
-                  <Link className='navbar-link link-container aplications-buzon' to='/' >
+                  <Link className='navbar-link link-container aplications-buzon' to='/cumpleanos' >
                     <FaBirthdayCake className='navbar-icon'/>
                     <p>Cumpleaños</p>
                   </Link>
