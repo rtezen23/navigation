@@ -6,11 +6,11 @@ import {
 } from "react-router-dom";
 import Buzon from './pages/Buzon';
 import {BuzonTable} from './pages/BuzonTable';
-import './components/slider.css';
 import ProtectedRoutes from './components/ProtectedRoutes';
 import { Home } from './pages/Home';
 import { Politicas } from './pages/Politicas';
 import { Cumpleaños } from './pages/Cumpleaños';
+import { Footer } from './components/Footer';
 
 // const slides = [
 //   { url: 'https://c4.wallpaperflare.com/wallpaper/435/542/549/javascript-google-node-js-html-microsoft-visual-studio-hd-wallpaper-preview.jpg', title: 'first image'},
@@ -24,9 +24,6 @@ function App() {
   return (
     <div className="App">
       <Navbar/>
-      {/* <div className='containerStyles'>
-        <Slider slides={slides}/>
-      </div> */}
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/buzon' element={<Buzon/>}/>
@@ -36,6 +33,7 @@ function App() {
             <Route path='/buzonData' element={<BuzonTable/>}/>
           </Route>
         </Routes>
+        <Footer/>
     </div>
   )
 }

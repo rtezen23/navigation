@@ -1,12 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
-import './buzon.css';
 import Select from 'react-select';
 import axios from 'axios';
 import { Message } from '../components/Message';
 import {useNavigate} from 'react-router-dom';
 import { BuzonPassword } from '../components/BuzonPassword';
 import { useEffect } from 'react';
+import './styles/buzon.css';
 
 // const API_URL = `${process.env.REACT_APP_API_URL}api/v1/buzon`;
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import './message.css'
+import './styles/message.css'
 import {AiFillCheckCircle} from 'react-icons/ai';
 
 export const Message = ({handleMessage}) => {

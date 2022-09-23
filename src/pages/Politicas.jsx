@@ -7,7 +7,7 @@ import MAPA_RIESGOS from '../assets/politicas/Mapa de riesgos - Cobranzas Per.pd
 import RISST_2022 from '../assets/politicas/RISST 2022.pdf'
 import POLITICA_RESPONSABILIDAD_SOCIAL from '../assets/politicas/POLITICA DE RESPONSABILIDAD SOCIAL.pdf'
 import OBJETIVOS_CALIDAD from '../assets/politicas/OBJETIVOS DE CALIDAD.pdf'
-import './politicas.css'
+import './styles/politicas.css'
 
 export const Politicas = () => {
   return (

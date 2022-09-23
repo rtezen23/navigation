@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import DataTable from 'react-data-table-component';
 import * as XLSX from 'xlsx';
-import './buzonTable.css';
+import './styles/buzonTable.css';
 import {FaSearch} from 'react-icons/fa';
 
 export const BuzonTable = () => {

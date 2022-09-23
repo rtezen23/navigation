@@ -4,7 +4,9 @@ import {IoMdArrowDropleftCircle} from 'react-icons/io';
 import {IoMdArrowDroprightCircle} from 'react-icons/io';
 import {FaBirthdayCake} from 'react-icons/fa';
 import axios from 'axios';
-import './cumpleaños.css'
+import './styles/cumpleaños.css'
+
+const API_URL = `${process.env.REACT_APP_API_URL}api/v1/posts`;
 
 export const Cumpleaños = () => {
 
@@ -146,7 +148,7 @@ export const Cumpleaños = () => {
   }, [mesActual])
 
   useEffect(() => {
-    axios.get('http://192.168.1.51:4000/api/v1/cumples')
+    axios.get('api/v1/cumples')
     .then(res => {
       setPersonal(res.data.cumples)
       setFiltrados(ordenarFiltro(filtrarActuales(res.data.cumples)))

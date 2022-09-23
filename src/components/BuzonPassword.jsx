@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './buzonPassword.css'
+import './styles/buzonPassword.css'
 import {AiFillEye} from 'react-icons/ai'
 import {AiFillEyeInvisible} from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'

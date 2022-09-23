@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { BsCircleFill } from 'react-icons/bs'
 import { IoMdArrowDropleftCircle } from 'react-icons/io'
 import { IoMdArrowDroprightCircle } from 'react-icons/io'
-import './slider.css'
+import './styles/slider.css'
 
 export const Slider = ({ slides }) => {
 

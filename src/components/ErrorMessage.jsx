@@ -1,5 +1,5 @@
 import React from 'react'
-import './errorMessage.css'
+import './styles/errorMessage.css'
 import {VscError} from 'react-icons/vsc';
 
 export const ErrorMessage = ({handleErrorMessage}) => {

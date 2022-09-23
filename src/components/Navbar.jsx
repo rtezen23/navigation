@@ -7,7 +7,7 @@ import {RiComputerFill} from 'react-icons/ri';
 import {BsFillBookmarkCheckFill} from 'react-icons/bs';
 import {BsMailbox2} from 'react-icons/bs';
 import {FaBirthdayCake} from 'react-icons/fa';
-import './navbar.css'
+import './styles/navbar.css'
 
 const Navbar = () => {
 
@@ -114,7 +114,7 @@ const Navbar = () => {
                   { showCanales &&
                     <div className='aplications-links'>
                       <div className='aplications-item'>
-                        <a className='navbar-link aplications-item_padre canales-link' href='	https://sms.intico.com.pe/Security/Login?reseller=B21295B42B' target='_blank'>SMS</a>
+                        <a className='navbar-link aplications-item_padre canales-link' href='https://sms.intico.com.pe/Security/Login?reseller=B21295B42B' target='_blank'>SMS</a>
                       </div>
                       <div className='aplications-item'>
                         <a className='navbar-link aplications-item_padre canales-link' href='https://broadcast.itelvox.com/login.php?redirect=%2Fcontact_group.php' target='_blank'>IVR</a>

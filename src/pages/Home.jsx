@@ -1,10 +1,10 @@
 import React from 'react'
 import { Slider } from '../components/Slider';
-import '../components/slider.css';
+import '../components/styles/slider.css';
 import img from '../assets/background.png'
 import img2 from '../assets/1.png'
 import img3 from '../assets/2.png'
-import './home.css'
+import './styles/home.css'
 import About from '../components/About';
 
 const slides = [
